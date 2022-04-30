@@ -17,15 +17,24 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return view('index');
-});
+    return view('home');
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
+    Route::get('/admin', function () {
+        return view('/admin/dashboard');
     })->name('dashboard');
+    Route::get('/admin/category', function () {
+        return view('/admin/category');
+    })->name('category');
+    Route::get('/admin/product', function () {
+        return view('/admin/product');
+    })->name('product');
+    Route::get('/admin/about', function () {
+        return view('/admin/about');
+    })->name('about');
 });

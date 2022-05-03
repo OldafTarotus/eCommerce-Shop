@@ -34,7 +34,7 @@ Route::middleware([
     Route::get('/admin/product', function () {
         return view('/admin/product');
     })->name('product');
-    Route::get('/admin/about', function () {
-        return view('/admin/about');
-    })->name('about');
+    Route::get('/admin/contacts', function () {
+        return view('/admin/contacts');
+    })->name('contacts');
 });

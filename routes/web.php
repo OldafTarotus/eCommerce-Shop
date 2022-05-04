@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\adminController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get($uri, $callback);
+// Route::post($uri, $callback);
+// Route::put($uri, $callback);
+// Route::patch($uri, $callback);
+// Route::delete($uri, $callback);
+// Route::options($uri, $callback);
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -25,16 +34,19 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/admin', function () {
-        return view('/admin/dashboard');
-    })->name('dashboard');
+
+    // admin routes
+    Route::get('/admin', [adminController::class, 'index'])->name('dashboard');
+    // admin category routes
     Route::get('/admin/category', function () {
         return view('/admin/category');
     })->name('category');
+    // admin product routes
     Route::get('/admin/product', function () {
         return view('/admin/product');
     })->name('product');
-    Route::get('/admin/contacts', function () {
-        return view('/admin/contacts');
-    })->name('contacts');
+    // admin contacts routes
+    Route::get('/admin/contacts', [adminController::class, 'contact_index'])->name('contacts');
+    Route::post('/admin/contacts_update', [adminController::class, 'contact_update'])->name('update_contacts');
+    Route::post('/admin/contacts', [adminController::class, 'contact_store'])->name('save_contacts');
 });

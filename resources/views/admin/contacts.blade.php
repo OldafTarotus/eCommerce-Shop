@@ -35,9 +35,9 @@
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200
                             rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="whatsapp" type="tel" placeholder="000-000-0000" name="whatsPhone"
+                                    id="whatsapp" type="tel" placeholder="000-000-0000" name="whatsapp"
                                     value="@isset($contacts) {{ $contacts->whatsapp }} @endisset">
-                                @error('whatsphone')
+                                @error('whatsapp')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>

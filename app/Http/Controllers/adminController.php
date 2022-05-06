@@ -11,7 +11,7 @@ class adminController extends Controller
     {
         if (Contact::exists()) {
 
-            $data = Contact::findOrFail(1);
+            $data = Contact::first();
             return view('admin.dashboard', ['contacts' => $data]);
         }
         return view('admin.dashboard');
@@ -20,7 +20,7 @@ class adminController extends Controller
     {
         if (Contact::exists()) {
 
-            $data = Contact::findOrFail(1);
+            $data = Contact::first();
             return view('admin.contacts', ['contacts' => $data]);
         }
         return view('admin.contacts');
@@ -28,22 +28,27 @@ class adminController extends Controller
 
     public function contact_store(Request $request)
     {
-        $data = new Contact;
-        $data->phone = $request->input('phone');
-        $data->whatsapp = $request->input('whatsPhone');
-        $data->email = $request->input('email');
-        $data->address = $request->input('address');
-        $data->save();
+
+        $filedData = $request->validate([
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
+            'whatsapp' => 'required|regex:/(01)[0-9]{9}/',
+            'email' => 'required|email',
+            'address' => 'required',
+
+        ]);
+        $contact = Contact::create($filedData);
         return redirect()->route('contacts');
     }
     public function contact_update(Request $request)
     {
-        $data =  Contact::findOrFail(1);
-        $data->phone = $request->input('phone');
-        $data->whatsapp = $request->input('whatsPhone');
-        $data->email = $request->input('email');
-        $data->address = $request->input('address');
-        $data->save();
+        $filedData = $request->validate([
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
+            'whatsapp' => 'required|regex:/(01)[0-9]{9}/',
+            'email' => 'required|email',
+            'address' => 'required',
+
+        ]);
+        $contact =  Contact::first()->update($filedData);
         return redirect()->route('contacts');
     }
 }

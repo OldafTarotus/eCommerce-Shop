@@ -968,11 +968,11 @@ select {
 .m-2 {
   margin: 0.5rem;
 }
-.m-7 {
-  margin: 1.75rem;
-}
 .m-3 {
   margin: 0.75rem;
+}
+.m-7 {
+  margin: 1.75rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -985,10 +985,6 @@ select {
 .-mx-3 {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
-}
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1625,11 +1621,11 @@ select {
 .tracking-widest {
   letter-spacing: 0.1em;
 }
-.tracking-wider {
-  letter-spacing: 0.05em;
-}
 .tracking-wide {
   letter-spacing: 0.025em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 .text-gray-500 {
   --tw-text-opacity: 1;

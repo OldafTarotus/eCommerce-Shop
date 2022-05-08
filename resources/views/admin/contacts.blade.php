@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-7 p-10 items-center justify-center">
-                <p class="md:text-7xl sm:text-4xl text-2xl uppercase font-bold font-serif text-blue-700">contacts📔</p>
+                <p class="md:text-7xl sm:text-4xl text-2xl uppercase font-bold font-serif text-blue-700">contacts</p>
                 <div class="my-7 py-10 items-center justify-center">
                     <form method="POST" action="
                     @if (isset($contacts)) {{ route('update_contacts') }}
@@ -57,21 +57,50 @@
                             </div>
                             <div class="w-full md:w-1/2 px-3 py-5 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="address">
-                                    address
+                                    for="google_map">
+                                    google map
                                 </label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="address" name="address" type="text" placeholder="Street Address "
-                                    value="@isset($contacts) {{ $contacts->address }} @endisset">
-                                @error('address')
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200
+                        rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    id="google_map" name="google_map" type="text" placeholder="google map "
+                                    value="@isset($contacts) {{ $contacts->google_map }} @endisset">
+                                @error('google_map')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
-                        <input
-                            class="bg-blue-500 hover:bg-blue-700 mt-5 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit" value="Save 💾 ">
+                            <div class="w-full md:w-1/2 px-3 py-5 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="address_en">
+                                    address in english
+                                </label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    id="address_en" name="address_en" type="text" placeholder="Street Address "
+                                    value="@isset($contacts) {{ $contacts->address_en }} @endisset">
+                                @error('address_en')
+                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="w-full md:w-1/2 px-3 py-5 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="address_ar">
+                                    address in arabic
+                                </label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    id="address_ar" name="address_ar" type="text" placeholder="Street Address "
+                                    value="@isset($contacts) {{ $contacts->address_ar }} @endisset"
+                                    dir="rtl">
+                                @error('address_ar')
+                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <input
+                                class="bg-blue-500 hover:bg-blue-700 mt-5 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="submit" value="Save 💾 ">
                     </form>
                 </div>
             </div>

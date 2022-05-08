@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\SubCategory;
+use App\Models\MainCategory;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
 {
     public function index()
     {
-        if (Contact::exists()) {
-
+        if (Contact::exists() | MainCategory::exists() | SubCategory::exists()) {
+            $subData = SubCategory::all();
+            $catData = MainCategory::all();
             $data = Contact::first();
-            return view('admin.dashboard', ['contacts' => $data]);
+            return view('admin.dashboard', ['contacts' => $data, 'mainCategorys' => $catData, 'subCategorys' => $subData]);
         }
         return view('admin.dashboard');
     }
@@ -33,7 +36,10 @@ class adminController extends Controller
             'phone' => 'required|regex:/(01)[0-9]{9}/',
             'whatsapp' => 'required|regex:/(01)[0-9]{9}/',
             'email' => 'required|email',
-            'address' => 'required',
+            'google_map' => 'required',
+            'address_en' => 'required',
+            'address_ar' => 'required',
+
 
         ]);
         $contact = Contact::create($filedData);
@@ -45,8 +51,9 @@ class adminController extends Controller
             'phone' => 'required|regex:/(01)[0-9]{9}/',
             'whatsapp' => 'required|regex:/(01)[0-9]{9}/',
             'email' => 'required|email',
-            'address' => 'required',
-
+            'google_map' => 'required',
+            'address_en' => 'required',
+            'address_ar' => 'required',
         ]);
         $contact =  Contact::first()->update($filedData);
         return redirect()->route('contacts');

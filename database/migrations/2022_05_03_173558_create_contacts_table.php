@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('phone');
             $table->string('whatsapp');
             $table->string('email');
-            $table->string('address');
+            $table->string('google_map');
+            $table->string('address_en');
+            $table->string('address_ar');
             $table->timestamps();
         });
     }

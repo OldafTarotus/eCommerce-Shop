@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\categoryController;
 use Illuminate\Http\Request;
 
 /*
@@ -38,9 +39,15 @@ Route::middleware([
     // admin routes
     Route::get('/admin', [adminController::class, 'index'])->name('dashboard');
     // admin category routes
-    Route::get('/admin/category', function () {
-        return view('/admin/category');
-    })->name('category');
+
+    Route::get('/admin/category', [categoryController::class, 'index'])->name('category');
+    Route::get('/admin/category/main', [categoryController::class, 'mainCategory_index'])->name('getMainCategory');
+    Route::post('/admin/category/main', [categoryController::class, 'mainCategory_store'])->name('saveMainCategory');
+    Route::get('/admin/category/sub', [categoryController::class, 'subCategory_index'])->name('getSubCategory');
+    Route::post('/admin/category/sub', [categoryController::class, 'subCategory_store'])->name('saveSubCategory');
+    // Route::get('/admin/category', function () {
+    //     return view('/admin/category');
+    // })->name('category');
     // admin product routes
     Route::get('/admin/product', function () {
         return view('/admin/product');

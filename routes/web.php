@@ -38,20 +38,21 @@ Route::middleware([
 
     // admin routes
     Route::get('/admin', [adminController::class, 'index'])->name('dashboard');
-    // admin category routes
 
+    // admin category routes
     Route::get('/admin/category', [categoryController::class, 'index'])->name('category');
     Route::get('/admin/category/main', [categoryController::class, 'mainCategory_index'])->name('getMainCategory');
     Route::post('/admin/category/main', [categoryController::class, 'mainCategory_store'])->name('saveMainCategory');
+    Route::get('/admin/category/main/{mainCategory}', [categoryController::class, 'mainCategory_show'])->name('showMainCategory');
+    Route::put('/admin/category/main', [categoryController::class, 'mainCategory_update'])->name('updateMainCategory');
     Route::get('/admin/category/sub', [categoryController::class, 'subCategory_index'])->name('getSubCategory');
     Route::post('/admin/category/sub', [categoryController::class, 'subCategory_store'])->name('saveSubCategory');
-    // Route::get('/admin/category', function () {
-    //     return view('/admin/category');
-    // })->name('category');
+
     // admin product routes
     Route::get('/admin/product', function () {
         return view('/admin/product');
     })->name('product');
+
     // admin contacts routes
     Route::get('/admin/contacts', [adminController::class, 'contact_index'])->name('contacts');
     Route::post('/admin/contacts_update', [adminController::class, 'contact_update'])->name('update_contacts');

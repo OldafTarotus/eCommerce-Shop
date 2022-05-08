@@ -22,6 +22,11 @@ class categoryController extends Controller
     {
         return view('admin.mainCategory');
     }
+    public function mainCategory_show(mainCategory $mainCategory)
+    {
+
+        return view('admin.mainCategory', ['mainCategorys' => $mainCategory]);
+    }
     public function mainCategory_store(Request $request)
     {
         $filedData = $request->validate([
@@ -36,6 +41,23 @@ class categoryController extends Controller
             $filedData['file_img'] = $request->file('file_img')->store('uploads', 'public');
         }
         $category = MainCategory::create($filedData);
+        return redirect()->route('category');
+    }
+    public function mainCategory_update(Request $request, mainCategory $mainCategory)
+    {
+
+        $filedData = $request->validate([
+            'name_en' => 'required',
+            'description_en' => 'required',
+            'name_ar' => 'required',
+            'description_ar' => 'required',
+            'file_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        if ($request->hasFile('file_img')) {
+            $filedData['file_img'] = $request->file('file_img')->store('uploads', 'public');
+        }
+        MainCategory::whereIn('id', $request)->update($filedData);
         return redirect()->route('category');
     }
     public function subCategory_index()
